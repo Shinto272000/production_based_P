@@ -1,25 +1,84 @@
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
+import ListUserspage from './components/ListUserspage';
+import { Nav, Navbar, Container } from 'react-bootstrap';
+import ViewUserpage from './components/ViewUserpage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div>
+        <header>
+          <h1> Sample projet</h1>
+          <nav>
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
+            <Link to="/gallery"> gallery</Link>
+
+          </nav>
+        </header>
+        <Routes>
+          <Route index element={<ListUserspage />} />
+          <Route path='about' element={<Aboutpage />} />
+          <Route path='gallery' element={<GalleryPage />} />
+
+          <Route path='users/:userid' element={<ViewUserpage />} />
+        </Routes>
+
+
+      </div>
+    </BrowserRouter>
   );
 }
 
+
+function Homepage() {
+
+  return (<div className='contents'>
+
+    <h2> home page </h2>
+    <p>home page contents will available here</p>
+
+
+  </div>);
+
+
+}
+
+function Aboutpage() {
+
+  return (<div className='contents'>
+
+    <h2> About page </h2>
+    <p>about page contents will available here</p>
+
+  </div>);
+
+
+}
+
+function GalleryPage() {
+
+  return (<div className='contents'>
+
+    <h2> GalleryPage</h2>
+    <p>about page contents will available here</p>
+
+  </div>);
+
+
+}
+
+function ErrorPage() {
+
+  return (<div className='contents'>
+
+    <h2> 404</h2>
+    <p>No data found</p>
+
+  </div>);
+
+
+}
 export default App;
